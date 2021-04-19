@@ -1,6 +1,7 @@
 ## PodCastr
 
 ![license](https://img.shields.io/badge/license-MIT-blue.svg)
+
 ## Quick start
 
 - [Download from Github](https://github.com/joel-fragoso/podcastr/archive/refs/heads/main.zip) or clone the repo: `git clone https://github.com/joel-fragoso/podcastr.git`
