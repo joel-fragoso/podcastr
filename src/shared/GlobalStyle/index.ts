@@ -18,8 +18,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-color: #fafafa;
-    color: #212121;
+    background: #f7f8fa;
   }
 
   html, body, #__next {
@@ -28,7 +27,22 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body, button, input, textarea {
-    font: 400 1rem 'Roboto', Helvetica, Arial, sans-serif;
+    font: 500 1rem 'Inter', Arial, Helvetica, sans-serif;
+    color: #808080;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lexend', Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    color: #494d4b;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
   }
 
   ul {

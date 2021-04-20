@@ -2,8 +2,30 @@
 
 exports[`HomeRoute page should be able to matches snapshot 1`] = `
 <DocumentFragment>
-  <h1>
-    Olá mundo!
-  </h1>
+  <div
+    class="styles__LayoutRoot-sc-5fac4f-0 bFA-DUM"
+  >
+    <div
+      class="styles__LayoutWrapper-sc-5fac4f-1 jHkEUP"
+    >
+      <div
+        class="styles__LayoutContainer-sc-5fac4f-2 ejZZHs"
+      >
+        <div
+          class="styles__LayoutContent-sc-5fac4f-3 gBLEzg"
+        >
+          <main
+            class="styles__Container-sc-1gl7fhg-0 dVxcFv"
+          >
+            <h1
+              class="styles__HelloWorld-sc-1gl7fhg-1 cagzVN"
+            >
+              Olá mundo 🎉️!
+            </h1>
+          </main>
+        </div>
+      </div>
+    </div>
+  </div>
 </DocumentFragment>
 `;
