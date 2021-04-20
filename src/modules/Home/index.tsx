@@ -6,7 +6,7 @@ import { Container, HelloWorld } from './styles'
 const Home: FC = () => {
   return (
     <>
-      <Head title="PodCastr" />
+      <Head title="Podcastr" />
       <Layout>
         <Container>
           <HelloWorld>Olá mundo 🎉️!</HelloWorld>

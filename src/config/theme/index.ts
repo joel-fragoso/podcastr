@@ -14,6 +14,7 @@ export const theme: DefaultTheme = {
       default: grey[50],
       paper: '#ffffff',
     },
+    divider: grey[100],
     text: {
       primary: grey[500],
       secondary: 'rgba(0, 0, 0, 0.6)',

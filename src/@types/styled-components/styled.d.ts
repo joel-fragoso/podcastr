@@ -42,6 +42,7 @@ declare module 'styled-components' {
     palette: {
       common: ICommonColors
       background: ITypeBackground
+      divider: string
       text: ITypeText
       primary: IPaletteColors
       secondary: IPaletteColors
