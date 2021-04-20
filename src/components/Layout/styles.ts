@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const LayoutRoot = styled.div`
   background-color: #fafafa;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -11,6 +11,7 @@ export const LayoutRoot = styled.div`
 
 export const LayoutWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   flex: 1 1 auto;
   overflow: hidden;
 `

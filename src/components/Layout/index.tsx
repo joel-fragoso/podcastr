@@ -1,5 +1,6 @@
 import { FC, ReactNode } from 'react'
 import Navbar from '../Navbar'
+import Player from '../Player'
 import {
   LayoutRoot,
   LayoutWrapper,
@@ -14,12 +15,13 @@ interface ILayoutProps {
 const Layout: FC = ({ children }: ILayoutProps) => {
   return (
     <LayoutRoot>
-      <Navbar />
       <LayoutWrapper>
+        <Navbar />
         <LayoutContainer>
           <LayoutContent>{children}</LayoutContent>
         </LayoutContainer>
       </LayoutWrapper>
+      <Player />
     </LayoutRoot>
   )
 }

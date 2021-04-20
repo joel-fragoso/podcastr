@@ -11,7 +11,8 @@
     "format": "prettier --write .",
     "lint": "eslint . --ext ts --ext tsx --ext js",
     "test": "jest",
-    "test-all": "yarn lint && yarn type-check && yarn test"
+    "test-all": "yarn lint && yarn type-check && yarn test",
+    "server": "json-server -w -d 750 -p 3334 ./src/__mocks__/*.json"
   },
   "husky": {
     "hooks": {
@@ -51,6 +52,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.6.3",
     "jest-watch-typeahead": "^0.6.1",
+    "json-server": "^0.16.3",
     "lint-staged": "^10.0.10",
     "prettier": "^2.0.2",
     "typescript": "^4.1.3"
