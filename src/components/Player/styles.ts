@@ -23,6 +23,28 @@ export const HeaderText = styled.strong`
   font-weight: 600;
 `
 
+export const Playing = styled.div`
+  text-align: center;
+
+  img {
+    border-radius: 1.5rem;
+  }
+
+  strong {
+    display: block;
+    margin-top: 2rem;
+    font: 600 1.25rem 'Lexend', Arial, Helvetica, sans-serif;
+    line-height: 1.75rem;
+  }
+
+  span {
+    display: block;
+    margin-top: 1rem;
+    opacity: 0.6;
+    line-height: 1.5rem;
+  }
+`
+
 export const EmptyPlayer = styled.div`
   width: 100%;
   height: 20rem;
@@ -91,12 +113,25 @@ export const ControlButtons = styled.div`
     background: transparent;
     border: 0;
     font-size: 0;
+    transition: filter 0.2s;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    &:not(:disabled):hover {
+      filter: brightness(0.7);
+    }
 
     &:nth-child(3) {
       width: 4rem;
       height: 4rem;
       border-radius: 1rem;
       background-color: ${({ theme }) => theme.palette.primary.light};
+
+      &:not(:disabled):hover {
+        filter: brightness(0.95);
+      }
     }
   }
 `

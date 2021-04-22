@@ -33,8 +33,24 @@ const EpisodesRoute: FC<IEpisodesRouteProps> = (props) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const { data } = await api.get<IEpisode[]>('/episodes', {
+    params: {
+      _limit: 2,
+      _sort: 'published_at',
+      _order: 'desc',
+    },
+  })
+
+  const paths = data.map((episode: IEpisode) => {
+    return {
+      params: {
+        slug: episode.id,
+      },
+    }
+  })
+
   return {
-    paths: [],
+    paths,
     fallback: 'blocking',
   }
 }

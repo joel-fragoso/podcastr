@@ -13,6 +13,7 @@ import {
   Duration,
   AllEpisodes,
 } from './styles'
+import { usePlayer } from '../../store/player/PlayerContext'
 
 interface IFile {
   url: string
@@ -26,7 +27,6 @@ interface IEpisode {
   members: string
   published_at: string
   thumbnail: string
-  description: string
   file: IFile
   publishedAt: string
   durationAsString: string
@@ -38,6 +38,8 @@ interface IHomeProps {
 }
 
 const Home: FC<IHomeProps> = ({ latestEpisodes, allEpisodes }) => {
+  const { play } = usePlayer()
+
   return (
     <>
       <Head title="Podcastr - O melhor para você ouvir, sempre" />
@@ -63,7 +65,7 @@ const Home: FC<IHomeProps> = ({ latestEpisodes, allEpisodes }) => {
                     <PublishedAt>{episode.publishedAt}</PublishedAt>
                     <Duration>{episode.durationAsString}</Duration>
                   </Details>
-                  <button>
+                  <button onClick={() => play(episode)}>
                     <img
                       src="/static/icons/play-green.svg"
                       alt="Tocar episódio"
@@ -106,7 +108,7 @@ const Home: FC<IHomeProps> = ({ latestEpisodes, allEpisodes }) => {
                     <td>{episode.publishedAt}</td>
                     <td>{episode.durationAsString}</td>
                     <td>
-                      <button>
+                      <button onClick={() => play(episode)}>
                         <img
                           src="/static/icons/play-green.svg"
                           alt="Tocar episódio"
