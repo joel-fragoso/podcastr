@@ -110,19 +110,6 @@ export const ControlButtons = styled.div`
   gap: 1.5rem;
 
   button {
-    background: transparent;
-    border: 0;
-    font-size: 0;
-    transition: filter 0.2s;
-
-    &:disabled {
-      cursor: not-allowed;
-    }
-
-    &:not(:disabled):hover {
-      filter: brightness(0.7);
-    }
-
     &:nth-child(3) {
       width: 4rem;
       height: 4rem;

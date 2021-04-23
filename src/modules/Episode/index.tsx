@@ -2,6 +2,7 @@ import { FC } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Layout from '../../components/Layout'
+import { usePlayer } from '../../store/player/PlayerContext'
 import { Container, Thumbnail, Description } from './styles'
 
 interface IFile {
@@ -27,6 +28,8 @@ interface IEpisodeProps {
 }
 
 const Episode: FC<IEpisodeProps> = ({ episode }) => {
+  const { play } = usePlayer()
+
   return (
     <Layout>
       <Container>
@@ -43,7 +46,7 @@ const Episode: FC<IEpisodeProps> = ({ episode }) => {
             alt={episode.title}
             objectFit={'cover'}
           />
-          <button>
+          <button onClick={() => play(episode)}>
             <img src="/static/icons/play.svg" alt="Tocar episódio" />
           </button>
         </Thumbnail>

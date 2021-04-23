@@ -37,8 +37,10 @@ interface IHomeProps {
   allEpisodes: IEpisode[]
 }
 
-const Home: FC<IHomeProps> = ({ latestEpisodes, allEpisodes }) => {
-  const { play } = usePlayer()
+const Home: FC<IHomeProps> = ({ latestEpisodes, allEpisodes }: IHomeProps) => {
+  const { playList } = usePlayer()
+
+  const episodeList = [...latestEpisodes, ...allEpisodes]
 
   return (
     <>
@@ -48,7 +50,7 @@ const Home: FC<IHomeProps> = ({ latestEpisodes, allEpisodes }) => {
           <LatestEpisodes>
             <h2>Últimos lançamentos</h2>
             <ul>
-              {latestEpisodes.map((episode) => (
+              {latestEpisodes.map((episode: IEpisode, index) => (
                 <li key={episode.id}>
                   <Thumbnail
                     width={192}
@@ -65,7 +67,7 @@ const Home: FC<IHomeProps> = ({ latestEpisodes, allEpisodes }) => {
                     <PublishedAt>{episode.publishedAt}</PublishedAt>
                     <Duration>{episode.durationAsString}</Duration>
                   </Details>
-                  <button onClick={() => play(episode)}>
+                  <button onClick={() => playList(episodeList, index)}>
                     <img
                       src="/static/icons/play-green.svg"
                       alt="Tocar episódio"
@@ -89,7 +91,7 @@ const Home: FC<IHomeProps> = ({ latestEpisodes, allEpisodes }) => {
                 </tr>
               </thead>
               <tbody>
-                {allEpisodes.map((episode) => (
+                {allEpisodes.map((episode: IEpisode, index) => (
                   <tr key={episode.id}>
                     <td>
                       <Image
@@ -108,7 +110,11 @@ const Home: FC<IHomeProps> = ({ latestEpisodes, allEpisodes }) => {
                     <td>{episode.publishedAt}</td>
                     <td>{episode.durationAsString}</td>
                     <td>
-                      <button onClick={() => play(episode)}>
+                      <button
+                        onClick={() =>
+                          playList(episodeList, index + latestEpisodes.length)
+                        }
+                      >
                         <img
                           src="/static/icons/play-green.svg"
                           alt="Tocar episódio"

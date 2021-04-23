@@ -23,9 +23,19 @@ interface IPlayerContextProps {
   episodeList: IEpisode[]
   currentEpisodeIndex: number
   isPlaying: boolean
+  isLooping: boolean
+  isShuffling: boolean
+  hasPrevious: boolean
+  hasNext: boolean
   play: (episode: IEpisode) => void
+  playList: (list: IEpisode[], index: number) => void
+  playPrevious: () => void
+  playNext: () => void
   togglePlay: () => void
+  toggleLoop: () => void
+  toggleShuffle: () => void
   onPlayAndPause: (playing: boolean) => void
+  clearPlayerState: () => void
 }
 
 interface IPlayerProviderProps {
@@ -34,10 +44,14 @@ interface IPlayerProviderProps {
 
 const PlayerContext = createContext({} as IPlayerContextProps)
 
-export const PlayerProvider: FC<IPlayerProviderProps> = ({ children }) => {
+export const PlayerProvider: FC<IPlayerProviderProps> = ({
+  children,
+}: IPlayerProviderProps) => {
   const [episodeList, setEpisodeList] = useState<IEpisode[]>([])
   const [currentEpisodeIndex, setCurrentEpisodeIndex] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false)
+  const [isLooping, setIsLooping] = useState(false)
+  const [isShuffling, setIsShuffling] = useState(false)
 
   const play = useCallback((episode: IEpisode) => {
     setEpisodeList([episode])
@@ -45,12 +59,51 @@ export const PlayerProvider: FC<IPlayerProviderProps> = ({ children }) => {
     setIsPlaying(true)
   }, [])
 
+  const playList = useCallback((list: IEpisode[], index: number) => {
+    setEpisodeList(list)
+    setCurrentEpisodeIndex(index)
+    setIsPlaying(true)
+  }, [])
+
+  const hasPrevious = currentEpisodeIndex - 1 >= 0
+  const hasNext = isShuffling || currentEpisodeIndex + 1 < episodeList.length
+
+  const playPrevious = useCallback(() => {
+    if (hasPrevious) {
+      setCurrentEpisodeIndex(currentEpisodeIndex - 1)
+    }
+  }, [currentEpisodeIndex])
+
+  const playNext = useCallback(() => {
+    if (isShuffling) {
+      const nextRandomEpisodeIndex = Math.floor(
+        Math.random() * episodeList.length
+      )
+      setCurrentEpisodeIndex(nextRandomEpisodeIndex)
+    } else if (hasNext) {
+      setCurrentEpisodeIndex(currentEpisodeIndex + 1)
+    }
+  }, [currentEpisodeIndex])
+
   const togglePlay = useCallback(() => {
     setIsPlaying(!isPlaying)
   }, [isPlaying])
 
+  const toggleLoop = useCallback(() => {
+    setIsLooping(!isLooping)
+  }, [isLooping])
+
+  const toggleShuffle = useCallback(() => {
+    setIsShuffling(!isShuffling)
+  }, [isShuffling])
+
   const onPlayAndPause = useCallback((playing: boolean) => {
     setIsPlaying(playing)
+  }, [])
+
+  const clearPlayerState = useCallback(() => {
+    setEpisodeList([])
+    setCurrentEpisodeIndex(0)
   }, [])
 
   return (
@@ -59,9 +112,19 @@ export const PlayerProvider: FC<IPlayerProviderProps> = ({ children }) => {
         episodeList,
         currentEpisodeIndex,
         isPlaying,
+        isLooping,
+        isShuffling,
+        hasPrevious,
+        hasNext,
         play,
+        playList,
+        playPrevious,
+        playNext,
         togglePlay,
+        toggleLoop,
+        toggleShuffle,
         onPlayAndPause,
+        clearPlayerState,
       }}
     >
       {children}
